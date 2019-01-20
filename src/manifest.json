@@ -1,0 +1,28 @@
+{
+    "lang": "en-US",
+    "name": "Tiny Weather",
+    "short_name": "Tiny Weather",
+    "display": "standalone",
+    "description": "A very minimalist weather report powered by Darksky weather API.",
+    "orientation": "portrait-primary",
+    "start_url": ".",
+    "background_color": "#0099cc",
+    "theme_color": "#0099cc",
+    "icons": [
+        {
+            "src": "app_icon_192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "app_icon_512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "app_icon_144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ]
+}

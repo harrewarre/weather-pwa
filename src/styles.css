@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    background-image: url('backdrop.jpg');
+    background-size: cover;
+    overflow: hidden;
+}
+
+/* --- Main layout --- */
+
+.app {
+    max-width: 800px;
+    min-width: 320px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    height: 100vh;
+}
+
+.app > .title {
+    padding: 0;
+    display: block;
+    margin: 5px 0 30px 0;
+}
+
+.location {
+    font-size: 2em;
+    font-weight: 300;
+    margin: 0 0 30px 0;
+}
+
+.reports {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Today layout--- */
+
+.today > .today-temperature {
+    font-size: 7em;
+    font-weight: 400;
+    margin: 0;
+}
+
+.today > .today-temperature > .temp-unit {
+    font-size: .25em;
+    line-height: 2.5em;
+    vertical-align: top;
+    padding: 5px 0 0 0;
+}
+
+.today > .today-summary {
+    font-size: 1em;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+/* --- Forecast --- */
+
+.forecast {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 50px 20px;
+}
+
+.smallDay {
+    display: flex;
+    flex-direction: column;
+}
+
+.smallDay > .day,
+.smallDay > .temp {
+    text-align: center;
+}
+
+.smallDay > .icon {
+    font-size: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    vertical-align: middle;
+}
+
+/* --- misc --- */
+
+.title > a {
+    color: #666;
+    text-decoration: none;
+}
+
+/* --- on- and offline state -- */
+.connection-state {
+    z-index: 100;
+    position: absolute;
+    left: 0;
+    right:0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: maroon;
+    color: white;
+    height: 0;
+    transition: height .5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 10px;
+}
+
+.connection-state.offline {
+    height: 30px;
+    transition: height .5s ease-in-out;
+}

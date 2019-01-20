@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tiny Weather</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+
+    <script src="vue.2.2.55.min.js"></script>
+</head>
+
+<body>
+    <div id="onlineToaster">
+        <div class="connection-state" v-bind:class="{ offline: !isOnline }">
+            ❕ Device is offline.
+        </div>
+    </div>
+    <main id="tinyWeather" class="app">
+        <small class="title">🌈 tiny weather <a href="https://darksky.net/poweredby/">powered by Dark Sky</a></small>
+
+        <h1 class="location" v-if="isLoading">Loading forecast...</h1>
+        <h1 class="location" v-if="!isLoading">{{ location }}</h1>
+        <div class="reports">
+            <section v-if="todayForecast" class="today">
+                <h2 class="today-temperature">{{ Math.round(todayForecast.temperature) }}<span class="temp-unit">°C</span></h2>
+                <small class="today-summary">{{ todayForecast.summary }}</small>
+            </section>
+
+            <section class="forecast">
+                <div v-for="day in dailyForecast" class="smallDay">
+                    <small class="day">{{ new Date(day.time * 1000).getDate() }}</small>
+                    <span class="icon">{{ iconMap[day.icon] }}</span>
+                    <small class="temp">{{ Math.round(day.temperatureMin) }}/{{ Math.round(day.temperatureMax) }}°C</small>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

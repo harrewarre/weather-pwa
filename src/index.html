@@ -18,7 +18,11 @@
         </div>
     </div>
     <main id="tinyWeather" class="app">
-        <small class="title">🌈 tiny weather <a href="https://darksky.net/poweredby/">powered by Dark Sky</a></small>
+        <small class="title">🌈 tiny weather<br /> 
+            <small class="credit">
+                <a href="https://darksky.net/poweredby/">powered by Dark Sky</a> and <a href="https://nominatim.openstreetmap.org/">OSM Nominatim</a>
+            </small>
+        </small>
 
         <h1 class="location" v-if="isLoading">Loading forecast...</h1>
         <h1 class="location" v-if="!isLoading">{{ location }}</h1>

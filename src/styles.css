@@ -96,7 +96,8 @@ body {
 
 /* --- misc --- */
 
-.title > a {
+.title > .credit,
+.title > .credit a {
     color: #666;
     text-decoration: none;
 }

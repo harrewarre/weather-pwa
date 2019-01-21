@@ -1,4 +1,5 @@
-const _version = "v1";
+const _previousVersion = "v1";
+const _version = "v2";
 
 const _staticFiles = [
     "/",
@@ -24,6 +25,7 @@ const _offlineApiResponse = {
 };
 
 self.addEventListener("install", (event) => {
+    event.waitUntil(caches.delete(_previousVersion));
     event.waitUntil(caches.open(_version).then(cache => {
         return cache.addAll(_staticFiles);
     }));

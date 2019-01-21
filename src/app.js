@@ -12,20 +12,33 @@ const app = new Vue({
                 navigator.geolocation.getCurrentPosition(fulfill, reject);
             })
         },
+        loadForecastLocation: async function (lat, long) {
+            const response = await fetch(`https://tiny-weather.azurewebsites.net/location/${lat}/${long}`);
+
+            if (!response.ok) {
+                throw new Error("Failed to get forecast location!");
+            }
+
+            var locationData = await response.json();
+            // Depending on where you are, the name of the city you are in is in a different property, but it's always the first one...
+            this.location = locationData.address[Object.keys(locationData.address)[0]];
+        },
         loadForecast: async function () {
             try {
                 this.isLoading = true;
 
                 const position = await this.getPositionAsync();
-                const response = await fetch(`https://tiny-weather.azurewebsites.net/report/${position.coords.latitude}/${position.coords.longitude}`);
+                const response = await fetch(`https://tiny-weather.azurewebsites.net/weather/${position.coords.latitude}/${position.coords.longitude}`);
 
                 if (!response.ok) {
+                    console.error(response);
                     throw new Error("Failed to get weather report.");
                 }
 
                 const report = await response.json();
 
-                this.location = report.timezone.replace("/", " - ");
+                this.loadForecastLocation(position.coords.latitude, position.coords.longitude);
+
                 this.todayForecast = report.currently;
                 this.dailyForecast = report.daily.data;
 
@@ -36,6 +49,7 @@ const app = new Vue({
 
             } catch (error) {
                 this.isLoading = false;
+                console.error(error);
                 alert(error.message);
             }
         },
